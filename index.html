@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
-    <!-- Bootstrap CSS -->
+    <!-- add Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <!-- mapbox only needed if using mapbox basemap -->
@@ -162,7 +162,7 @@
       };
 
       $.getJSON("data/transit_sao_paulo_lines.geojson",function(data){
-        L.geoJson(data,{color:"#00008b", weight:4, opacity: 0.6}).addTo(map);
+        L.geoJson(data,{color:"#00008b", weight:4, opacity: 0.5}).addTo(map);
       });
 
       $.getJSON("data/transit_sao_paulo_stops.geojson",function(data){
@@ -176,17 +176,6 @@
       }).addTo(map);
 
       });
-
-      /* Control panel to display map layers */
-
-     // L.control.layers(baseLayers, overlays).addTo(map);
-      /* Control panel to display map layers */
-      L.control.layers( null, null, {
-        position: "topright",
-        collapsed: false,
-        atoZIndex: true,
-        hideSingleBase: true
-      }).addTo(map);
 
     </script>
   </main>
