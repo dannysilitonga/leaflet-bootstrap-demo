@@ -25,56 +25,10 @@
     <!-- this <link> tag lets your page call up Google font families-->
     <link href="https://fonts.googleapis.com/css?family=Oxygen|Cinzel|" rel="stylesheet">
 
-
     <title>Map Project</title>
+    <link rel="stylesheet" type="text/css" href="style.css"> 
 
   </head>
-
-  <style>
-
-    body {
-      background-color: rgb(239, 217, 202);
-      font-family: 'Oxygen', sans-serif;
-      padding-top: 60px;
-      padding-bottom: 40px;
-    }
-
-    #map {
-      position: relative;
-      width: 100%;
-      height: 100%;
-    }
-
-    #pgtitle {
-      font-size: 2em;
-      font-family: 'Cinzel', serif;
-    }
-
-    .container, .container-fluid {
-      background-color: rgb(239, 217, 202);
-      border: black solid 0px;
-      color: rgb(0, 0, 0);
-    }
-
-    .row {
-      background-color: rgb(239, 217, 202);
-      border: rgb(255, 199, 64) solid 0px;
-      margin-bottom: 20px;
-    }
-
-    [class*="col", class*="col-9", class*="col-8", class*="col-4", class*="col-3"]{
-      border: black solid 1px;
-      background-color: rgb(255, 255, 255);
-      color: rgb(255, 255, 255);   
-    }
-
-    .minor {
-      font-size: 1em;
-      font-family: 'Oxygen', sans-serif;
-    }
-
-
-  </style>
 
   <body>
 
@@ -135,49 +89,7 @@
 
 
 
-    <script>
-        // create variable to hold map element, give initial settings to map
-        var map = L.map('map',{ center: [-23.6832,-46.5957], zoom: 10});
-
-        // add map tiles layer to map element
-
-        L.mapbox.accessToken = 'pk.eyJ1IjoicmRhbmllbGwiLCJhIjoiY2ttcGZsdTl4MDM1djJ3bm5iZXU2dnhwOCJ9.WdM8qnEwVWfISjL4DZ54Mg';
-            
-        var mapboxTiles = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v10/tiles/{z}/{x}/{y}?access_token=' + L.mapbox.accessToken, {
-               attribution: '© <a href="https://www.mapbox.com/feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-               tileSize: 512,
-               zoomOffset: -1
-        });
-
-        map.addLayer(mapboxTiles);
-
-      // added this variable to set point data style as circle-marker
-      var geojsonMarkerOptions = {
-          radius: 7,
-          fillColor: "#00ccff",
-          color: "#006680",
-          weight: 1,
-          opacity: 0.5,
-          fillOpacity: 0.8
-      };
-
-      $.getJSON("data/transit_sao_paulo_lines.geojson",function(data){
-        L.geoJson(data,{color:"#00008b", weight:4, opacity: 0.5}).addTo(map);
-      });
-
-      $.getJSON("data/transit_sao_paulo_stops.geojson",function(data){
-        L.geoJson(data, {
-          pointToLayer: function (feature, latlng) {
-              return L.circleMarker(latlng, geojsonMarkerOptions);
-          },
-          onEachFeature: function (feature, layer) {
-              layer.bindPopup(feature.properties.name);
-          }
-      }).addTo(map);
-
-      });
-
-    </script>
+    <script type="text/javascript" src="main.js"></script>
   </main>
   </body>
 </html>
